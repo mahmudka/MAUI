@@ -1,0 +1,17 @@
+# Build output
+**/bin/
+**/obj/
+
+# Visual Studio / VS Code user files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Logs and caches
+*.cache
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
