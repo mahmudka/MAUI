@@ -4,7 +4,7 @@ namespace AtestareTicket.Services;
 
 public class ExcelService
 {
-    private const string ExcelFilePath = @"D:\Atestare Gruppe.xlsx";
+    private const string ExcelFilePath = @"C:\UTM\Atestare\Atestare Gruppe.xlsx";
 
     /// <summary>
     /// Returns all sheet names from the workbook — each sheet = one student group.
@@ -48,7 +48,7 @@ public class ExcelService
     /// </summary>
     public void SaveTicketRecord(string group, string student, int ticketNumber)
     {
-        const string outputPath = @"D:\Atestation May.xlsx";
+        const string outputPath = @"C:\UTM\Atestation May.xlsx";
         XLWorkbook workbook;
         IXLWorksheet worksheet;
 
