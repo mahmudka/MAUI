@@ -28,8 +28,14 @@ jobs:
               --title "Auto PR from $GITHUB_REF_NAME" \
               --body "This pull request was automatically created by workflow." \
               --base master \
-              --head "$GITHUB_REF_NAME")
-            echo "PR created: $PR_URL"
+              --head "$GITHUB_REF_NAME" 2>&1) || true
+            if echo "$PR_URL" | grep -q "No commits between"; then
+              echo "No new commits vs master, skipping PR creation."
+            elif echo "$PR_URL" | grep -q "http"; then
+              echo "PR created: $PR_URL"
+            else
+              echo "PR creation output: $PR_URL"
+            fi
           else
             echo "PR already exists for this branch."
           fi
