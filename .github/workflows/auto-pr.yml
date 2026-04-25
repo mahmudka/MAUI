@@ -10,12 +10,12 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up GitHub CLI
-        uses: cli/cli-action@v2
 
       - name: Create Pull Request with gh cli
         env:
