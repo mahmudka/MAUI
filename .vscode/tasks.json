@@ -4,7 +4,7 @@
 		{
 			"label": "Run MAUI Windows",
 			"type": "shell",
-			"command": "dotnet build AtestareTicket/AtestareTicket.csproj -f net9.0-windows10.0.19041.0 -c Debug && dotnet run --project AtestareTicket/AtestareTicket.csproj -f net9.0-windows10.0.19041.0",
+			"command": "dotnet build AtestareTicket/AtestareTicket.csproj -f net9.0-windows10.0.19041.0 -c Debug; dotnet run --project AtestareTicket/AtestareTicket.csproj -f net9.0-windows10.0.19041.0",
 			"isBackground": true,
 			"problemMatcher": [
 				"$msCompile"
