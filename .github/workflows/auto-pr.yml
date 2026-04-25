@@ -28,7 +28,8 @@ jobs:
               --title "Auto PR from $GITHUB_REF_NAME" \
               --body "This pull request was automatically created by workflow." \
               --base master \
-              --head "$GITHUB_REF_NAME" 2>&1) || true
+              --head "$GITHUB_REF_NAME" \
+              --reviewer mahmudka 2>&1) || true
             if echo "$PR_URL" | grep -q "No commits between"; then
               echo "No new commits vs master, skipping PR creation."
             elif echo "$PR_URL" | grep -q "http"; then
