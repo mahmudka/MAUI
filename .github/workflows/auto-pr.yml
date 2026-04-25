@@ -24,12 +24,12 @@ jobs:
           # Check if PR already exists for this branch
           pr_exists=$(gh pr list --head "$GITHUB_REF_NAME" --json number --jq 'length')
           if [ "$pr_exists" -eq 0 ]; then
-            gh pr create \
+            PR_URL=$(gh pr create \
               --title "Auto PR from $GITHUB_REF_NAME" \
               --body "This pull request was automatically created by workflow." \
-              --base main \
-              --head "$GITHUB_REF_NAME" \
-              --reviewer mahmudka
+              --base master \
+              --head "$GITHUB_REF_NAME")
+            echo "PR created: $PR_URL"
           else
             echo "PR already exists for this branch."
           fi
