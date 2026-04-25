@@ -1,10 +1,9 @@
-name: Auto PR and Assign Reviewer
+name: Auto PR with GitHub CLI
 
 on:
   push:
     branches:
       - '**'
-      # Exclude main/master to avoid PRs from default branch
       - '!main'
       - '!master'
 
@@ -15,21 +14,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'Auto PR: ${{ github.ref_name }}'
-          title: 'Auto PR from ${{ github.ref_name }}'
-          body: 'This pull request was automatically created.'
-          base: main
-          branch: ${{ github.ref_name }}
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh@v4
 
-      - name: Request review from mahmudka
-        if: steps.cpr.outputs.pull-request-url != ''
-        uses: peter-evans/request-review@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          reviewers: mahmudka
+      - name: Create Pull Request with gh cli
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if PR already exists for this branch
+          pr_exists=$(gh pr list --head "$GITHUB_REF_NAME" --json number --jq 'length')
+          if [ "$pr_exists" -eq 0 ]; then
+            gh pr create \
+              --title "Auto PR from $GITHUB_REF_NAME" \
+              --body "This pull request was automatically created by workflow." \
+              --base main \
+              --head "$GITHUB_REF_NAME" \
+              --reviewer mahmudka
+          else
+            echo "PR already exists for this branch."
+          fi
