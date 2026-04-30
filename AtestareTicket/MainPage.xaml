@@ -10,7 +10,7 @@
             <!-- ═══ TOP INFO BAR (like website top bar) ═══ -->
             <Grid BackgroundColor="#F5F6F7"
                   Padding="20,6">
-                <Label Text="Universitatea Tehnică a Moldovei"
+                <Label Text="Технический университет Молдовы"
                        FontSize="11"
                        TextColor="#555E6B"
                        HorizontalOptions="Start"
@@ -45,7 +45,7 @@
                            VerticalOptions="Center"
                            HorizontalOptions="End"
                            Grid.Column="1">
-                        <Label Text="Bilete Atestare"
+                        <Label Text="Билеты для аттестации"
                                FontSize="13"
                                FontAttributes="Bold"
                                TextColor="White"
@@ -61,12 +61,12 @@
                    HasShadow="False"
                    Margin="0,0,0,0">
                 <VerticalStackLayout Spacing="6">
-                    <Label Text="CREEAZĂ. DESCOPERĂ. INOVEAZĂ."
+                    <Label Text="СОЗДАВАЙ. ОТКРЫВАЙ. ТВОРИ."
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="White"
                            CharacterSpacing="1"/>
-                    <Label Text="Sistem de generare a biletelor de atestare · FCIM"
+                    <Label Text="Система генерации билетов аттестации · FCIM"
                            FontSize="13"
                            TextColor="#A8C4E0"
                            Margin="0,2,0,0"/>
@@ -90,12 +90,12 @@
                                  CornerRadius="2"
                                  VerticalOptions="Center"/>
                         <VerticalStackLayout Spacing="1" VerticalOptions="Center">
-                            <Label Text="PAS 1"
+                            <Label Text="ШАГ 1"
                                    FontSize="10"
                                    FontAttributes="Bold"
                                    TextColor="#2E6DA4"
                                    CharacterSpacing="1.5"/>
-                            <Label Text="Grupul academic"
+                            <Label Text="Академическая группа"
                                    FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="#0D2B5E"/>
@@ -108,7 +108,7 @@
                            BackgroundColor="#F4F8FD"
                            HasShadow="False">
                         <Picker x:Name="GroupPicker"
-                                Title="— Selectați grupul —"
+                                Title="— Выберите группу —"
                                 FontSize="15"
                                 TextColor="#1A2E4A"
                                 TitleColor="#95A5A6"
@@ -132,12 +132,12 @@
                                  CornerRadius="2"
                                  VerticalOptions="Center"/>
                         <VerticalStackLayout Spacing="1" VerticalOptions="Center">
-                            <Label Text="PAS 2"
+                            <Label Text="ШАГ 2"
                                    FontSize="10"
                                    FontAttributes="Bold"
                                    TextColor="#2E6DA4"
                                    CharacterSpacing="1.5"/>
-                            <Label Text="Numele studentului"
+                            <Label Text="Имя студента"
                                    FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="#0D2B5E"/>
@@ -150,7 +150,7 @@
                            BackgroundColor="#F4F8FD"
                            HasShadow="False">
                         <Picker x:Name="NamePicker"
-                                Title="— Selectați numele —"
+                                Title="— Выберите имя —"
                                 FontSize="15"
                                 TextColor="#1A2E4A"
                                 TitleColor="#95A5A6"
@@ -162,7 +162,7 @@
 
             <!-- ═══ GENERATE BUTTON (matches website "Alege un program" button) ═══ -->
             <Button x:Name="GenerateButton"
-                    Text="Generează Biletul"
+                    Text="Сгенерировать билет"
                     IsEnabled="False"
                     Clicked="OnGenerateTicketClicked"
                     BackgroundColor="#0D2B5E"
@@ -176,7 +176,7 @@
 
             <!-- ═══ HINT ═══ -->
             <Label x:Name="HintLabel"
-                   Text="Selectați grupul și numele pentru a genera biletul"
+                   Text="Выберите группу и имя для создания билета"
                    FontSize="12"
                    TextColor="#8A99AA"
                    HorizontalTextAlignment="Center"
@@ -190,7 +190,7 @@
                        TextColor="#555E6B"
                        HorizontalTextAlignment="Center"
                        Margin="0,10,0,0"/>
-                <Label Text="str. Studenților 9/7, Chișinău, Republica Moldova"
+                <Label Text="ул. Студенților 9/7, Кишинёв, Республика Молдова"
                        FontSize="10"
                        TextColor="#AAB8C2"
                        HorizontalTextAlignment="Center"/>

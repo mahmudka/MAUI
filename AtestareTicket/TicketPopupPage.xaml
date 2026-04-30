@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtestareTicket.TicketPopupPage"
+             BackgroundColor="#80000000"
+             Shell.NavBarIsVisible="False">
+
+    <!-- semi-transparent overlay -->
+    <Grid>
+        <!-- tap outside to close -->
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnOverlayTapped"/>
+        </Grid.GestureRecognizers>
+
+        <!-- centered card -->
+        <Frame BackgroundColor="White"
+               CornerRadius="10"
+               Padding="36,32"
+               HasShadow="True"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               MaximumWidthRequest="540"
+               MinimumWidthRequest="380">
+
+            <!-- stop tap from closing when clicking inside the card -->
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCardTapped"/>
+            </Frame.GestureRecognizers>
+
+            <VerticalStackLayout Spacing="20">
+
+                <!-- ticket header band -->
+                <Frame BackgroundColor="#0D2B5E"
+                       CornerRadius="6"
+                       Padding="20,14"
+                       HasShadow="False">
+                    <Label x:Name="TicketTitle"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                </Frame>
+
+                <!-- student name -->
+                <Label x:Name="StudentName"
+                       FontSize="19"
+                       TextColor="#555E6B"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+
+                <!-- divider -->
+                <BoxView HeightRequest="1" Color="#D8E4EF"/>
+
+                <!-- questions -->
+                <VerticalStackLayout x:Name="QuestionsLayout" Spacing="14"/>
+
+                <!-- divider -->
+                <BoxView HeightRequest="1" Color="#D8E4EF"/>
+
+                <!-- close button -->
+                <Button Text="Закрыть"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                        BackgroundColor="#0D2B5E"
+                        TextColor="White"
+                        CornerRadius="6"
+                        HeightRequest="52"
+                        Clicked="OnCloseClicked"/>
+
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
