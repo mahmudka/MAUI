@@ -5,6 +5,7 @@ namespace AtestareTicket;
 public partial class MainPage : ContentPage
 {
     private readonly ExcelService _excelService = new();
+    private readonly WordTicketService _wordTicketService = new();
     private readonly Random _random = new();
 
     public MainPage()
@@ -42,7 +43,7 @@ public partial class MainPage : ContentPage
         NamePicker.ItemsSource = null;
         NamePicker.SelectedIndex = -1;
         GenerateButton.IsEnabled = false;
-        HintLabel.Text = "Now select your name";
+        HintLabel.Text = "Теперь выберите имя";
 
         try
         {
@@ -60,14 +61,14 @@ public partial class MainPage : ContentPage
         bool bothSelected = GroupPicker.SelectedIndex >= 0 && NamePicker.SelectedIndex >= 0;
         GenerateButton.IsEnabled = bothSelected;
         HintLabel.Text = bothSelected
-            ? "✅ Ready! Click the button to generate your ticket."
-            : "Now select your name";
+            ? "✅ Готово! Нажмите кнопку для создания билета."
+            : "Теперь выберите имя";
     }
 
     private async void OnGenerateTicketClicked(object sender, EventArgs e)
     {
         var name = NamePicker.SelectedItem as string;
-        int ticketNumber = _random.Next(1, 31); // tickets 1–30
+        int ticketNumber = _random.Next(1, _wordTicketService.TicketCount + 1); // tickets 1–N
 
         var group = GroupPicker.SelectedItem as string;
 
@@ -84,17 +85,16 @@ public partial class MainPage : ContentPage
         // Disable button while popup is shown
         GenerateButton.IsEnabled = false;
 
-        // Modal alert — blocks all page interaction until dismissed
-        await DisplayAlert(
-            "🎟  Your Ticket",
-            $"{name}, your ticket number is {ticketNumber}",
-            "Close");
+        // Show custom popup with questions
+        var questions = _wordTicketService.GetQuestions(ticketNumber);
+        var popup = new TicketPopupPage(ticketNumber, name!, questions);
+        await Navigation.PushModalAsync(popup, animated: true);
 
         // Reset everything for the next user
         GroupPicker.SelectedIndex = -1;
         NamePicker.ItemsSource = null;
         NamePicker.SelectedIndex = -1;
         GenerateButton.IsEnabled = false;
-        HintLabel.Text = "Please select a group and your name first";
+        HintLabel.Text = "Пожалуйста, выберите группу и имя";
     }
 }
